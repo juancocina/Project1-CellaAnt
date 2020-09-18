@@ -1,3 +1,6 @@
+// Juan Cocina
+// The majority, if not all of this code, is borrowed from professor Siska
+
 // cs-sketch.js; P5 key animation fcns.  // CF p5js.org/reference
 // Time-stamp: <2020-02-02 15:58:23 Chuck Siska>
 
