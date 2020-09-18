@@ -20,23 +20,22 @@ function draw_grid( rminor, rmajor, rstroke, rfill  )
     {
         let big_linep = (ix % rmajor == 0);
         let line_wgt = 1;
-        if (big_linep) line_wgt = 2;
+        if (big_linep) line_wgt = 1; //changed this value from 2 to 1
+        //to change its thickness
         strokeWeight( line_wgt );
         line( ix, 0, ix, height );
         strokeWeight( 1 );
-        if ( ix % rmajor == 0 ) { text( ix, ix, 10 ); }
+      //  if ( ix % rmajor == 0 ) { text( ix, ix, 10 ); }
     }
     for ( var iy = 0; iy < height; iy += rminor )
     {
         let big_linep = (iy % rmajor == 0);
         let line_wgt = 1;
-        if (big_linep) line_wgt = 2;
+        if (big_linep) line_wgt = 1;//same as line 23
         strokeWeight( line_wgt );
         line( 0, iy, width, iy );
         strokeWeight( 1 );
-        if ( iy % rmajor == 0 ) { text( iy, 0, iy + 10 ); }
+      //  if ( iy % rmajor == 0 ) { text( iy, 0, iy + 10 ); }
     }
 }
 
-
-//additional functions outside of what the professor gave us....
