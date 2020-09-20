@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd3356b3-92a8-433d-acbb-276a5500ebca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/335-p1-cella-ant-x15 (1).pdf" beforeDir="false" afterPath="$PROJECT_DIR$/335-p1-cella-ant-x15 (1).pdf" afterDir="false" />
+    <list default="true" id="dd3356b3-92a8-433d-acbb-276a5500ebca" name="Default Changelist" comment="Added ant drawings">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cs-sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/cs-sketch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,18 +52,37 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600405078635</updated>
-      <workItem from="1600405080340" duration="22216000" />
+      <workItem from="1600405080340" duration="27623000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added ant drawings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ant drawings" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600501107126">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600501107126" />
+    <state x="144" y="79" key="DiffContextDialog" timestamp="1600638462517">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1600638462517" />
     <state width="1419" height="304" key="GridCell.Tab.0.bottom" timestamp="1600500250647">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -110,6 +147,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1419" height="304" key="GridCell.Tab.3.right/0.0.1440.900@0.0.1440.900" timestamp="1600500250652" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600638465007">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600638465007" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1600585576426">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

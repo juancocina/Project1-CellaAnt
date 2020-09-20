@@ -11,10 +11,10 @@ const g_frame_mod = 24; // Update ever 'mod' frames.
 let g_stop = 0; // Go by default.
 
 let colors;
+let innerRectWidth = g_canvas.cell_size - 2;
 
 function setup() // P5 Setup Fcn
 {
-    // Reduce colors to the sums of their RGB values. Note: -255 to remove the alpha value.
     // Note: Moving colors initialization to global will result in error bc p5.js isn't visible at that time.
     // idk why but this doesn't throw an error.
     colors = { BLACK:  color( 0 , 0 , 0 , 255),
@@ -29,6 +29,10 @@ function setup() // P5 Setup Fcn
     let height = size * g_canvas.hgt;
     createCanvas( width, height );  // Make a P5 canvas.
     draw_grid( 10, 50, 'white', 'yellow' );
+
+    g_bot.color = colors.BLACK;
+
+    draw_bot();
 }
 
 var g_bot = { dir:0, x:20, y:20, color:100 }; // Default direction is north
@@ -40,10 +44,8 @@ function move_bot( )
     // get current cell color and determine which color to update it to.
     // Step 1b:
     // check to see if the ant should move left or right based on the color before the update.
-    let currentCellColor = getCurrentCellColor();
-    let reducedCellColor = currentCellColor.reduce((a,b) => a+b, 0) - 255;
-    let color = null;
-    let turnRight = false;
+    let currentCellColor = g_bot.color.levels, reducedCellColor = currentCellColor.reduce((a, b) => a + b, 0) - 255,
+        color, turnRight = false;
     stroke('white')
     switch(reducedCellColor) {
         case 0:
@@ -75,8 +77,7 @@ function move_bot( )
     // Step 2: Draw the cell with the new color
     fill(color);
     let currentCellTopLeftCords = getCurrentCellTopLeftCords()
-    let rectWidth = g_canvas.cell_size - 2;
-    rect(currentCellTopLeftCords[0], currentCellTopLeftCords[1], rectWidth, rectWidth);
+    rect(currentCellTopLeftCords[0], currentCellTopLeftCords[1], innerRectWidth, innerRectWidth );
 
 //      0       Counter Clockwise.
 //    3   1
@@ -125,27 +126,64 @@ function move_bot( )
 
     g_bot.x = x; // Update bot x.
     g_bot.y = y; // Update bot y.
-    g_bot.color = color; // Update color.
+
+
+    let newCellColor = getCurrentCellColor();
+    reducedCellColor = newCellColor.reduce((a,b)=>a+b,0) - 255;
+    switch(reducedCellColor) { // Now that we moved, store the color the bot is currently under.
+        case 0:
+        case -255: // Black
+            g_bot.color = colors.BLACK;
+            break;
+        case 255:
+            if (newCellColor[0] === 255) { // Red
+                g_bot.color = colors.RED
+            }
+            else if (newCellColor[1] === 255) { // Green
+                g_bot.color = colors.GREEN;
+            }
+            else { // Blue
+                g_bot.color = colors.BLUE;
+            }
+            break;
+        case 510: // Yellow (yellow = rgb(255,255,0) => 255+255 = 510)
+            g_bot.color = colors.YELLOW;
+            break;
+        default:
+            g_bot.color = colors.BLACK;
+            break;
+    }
 }
 
 function draw_bot( ) // Convert bot pox to grid pos & draw bot.
 {
-    // (TODO) Step 5: Move ant using the direction it should face.
-
-    let sz = g_canvas.cell_size;
-    let sz2 = sz / 2;
-    let x = 1+ g_bot.x*sz; // Set x one pixel inside the sz-by-sz cell.
-    let y = 1+ g_bot.y*sz;
-    let big = sz -2; // Stay inside cell walls.
-    //  fill( g_bot.color ); // Concat string, auto-convert the number to string.
-    let acolors = get( x + sz2, y + sz2 ); // Get cell interior pixel color [RGBA] array.
-    let pix = acolors.reduce((a,b) => a + b, 0);
-    // (*) Here is how to detect what's at the pixel location.  See P5 docs for fancier...
-//    if (0 != pix) { fill( 0 ); stroke( 0 ); } // Turn off color of prior bot-visited cell.
-//    else { stroke( 'white' ); } // Else Bot visiting this cell, so color it.
-
-    // Paint the cell.
-    //rect( x, y, big, big );
+    let currentCellTopLeftCords = getCurrentCellTopLeftCords();
+    stroke('white');
+    fill('white');
+    switch (g_bot.dir) { // draw triangle based on dir
+        case 0:
+            triangle(currentCellTopLeftCords[0], currentCellTopLeftCords[1] + innerRectWidth,
+                     currentCellTopLeftCords[0] + 0.5*innerRectWidth, currentCellTopLeftCords[1],
+                     currentCellTopLeftCords[0] + innerRectWidth, currentCellTopLeftCords[1] + innerRectWidth);
+            break;
+        case 1:
+            triangle(currentCellTopLeftCords[0], currentCellTopLeftCords[1],
+                     currentCellTopLeftCords[0] + innerRectWidth, currentCellTopLeftCords[1] + 0.5*innerRectWidth,
+                     currentCellTopLeftCords[0], currentCellTopLeftCords[1] + innerRectWidth);
+            break;
+        case 2:
+            triangle(currentCellTopLeftCords[0], currentCellTopLeftCords[1],
+                     currentCellTopLeftCords[0] + innerRectWidth, currentCellTopLeftCords[1],
+                     currentCellTopLeftCords[0] + 0.5*innerRectWidth, currentCellTopLeftCords[1] + innerRectWidth);
+            break;
+        case 3:
+            triangle(currentCellTopLeftCords[0], currentCellTopLeftCords[1] + 0.5*innerRectWidth,
+                currentCellTopLeftCords[0] + innerRectWidth, currentCellTopLeftCords[1],
+                currentCellTopLeftCords[0] + innerRectWidth, currentCellTopLeftCords[1] + innerRectWidth);
+            break;
+        default:
+            break;
+    }
 }
 
 // Helper function
@@ -174,7 +212,7 @@ function draw_update()  // Update our display.
 function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
 {
     ++g_frame_cnt;
-    if (0 == g_frame_cnt % g_frame_mod)
+    if (0 === g_frame_cnt % g_frame_mod)
     {
         if (!g_stop) draw_update();
     }
